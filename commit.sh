@@ -1,3 +1,1 @@
-git add wxapi.php
-git commit -m '[033].'
-git push
+git commit -m '[034] add comment'

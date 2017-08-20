@@ -3,10 +3,15 @@
   * wechat php test
   */
 
-//define your token
+//define your token ==
 define("TOKEN", "teahouse_liu");
 $wechatObj = new wechatCallbackapiTest();
+//For key verify
 //$wechatObj->valid();
+
+//for debug
+//sae_debug('hello');
+
 $wechatObj->responseMsg();
 
 class wechatCallbackapiTest
