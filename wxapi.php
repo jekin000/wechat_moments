@@ -3,7 +3,8 @@
   * wechat php test
   */
 
-//define your token ==
+require_once('heartstone.php');
+//define your token
 define("TOKEN", "teahouse_liu");
 $wechatObj = new wechatCallbackapiTest();
 //For key verify
@@ -16,7 +17,7 @@ $wechatObj->responseMsg();
 
 class wechatCallbackapiTest
 {
-	public function valid()
+    public function valid()
     {
         $echoStr = $_GET["echostr"];
 
@@ -62,7 +63,7 @@ class wechatCallbackapiTest
     private function get_support_function()
     {
             return  "目前平台功能如下:"."\n"
-                    ."【1】查天气,如输入:南京天气"
+                    ."[000] heartstone"
                     ;
     }
     private function get_welcome()
@@ -130,6 +131,17 @@ class wechatCallbackapiTest
         }
     }
     private function parse_keyword($key)
+    {
+            $heartstone= new HeartStone();
+            $cmdarr = split(" ",$key);
+            $cmdnostr  = $cmdarr[0];
+            if ($cmdnostr == '000')
+                return $heartstone->show_menu();
+            else if ($cmdnostr == '001')
+                return $heartstone->createDeck($cmdarr[1]);
+            return $this->default_text($key);
+    }
+    private function parse_keyword_old($key)
     {
             if ($key == '1')
             {
