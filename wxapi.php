@@ -119,7 +119,7 @@ class wechatCallbackapiTest
                     </xml>";             
         if(!empty( $keyword ))
         {
-            $contentStr = $this->parse_keyword($keyword);     
+            $contentStr = $this->parse_keyword($fromUsername,$keyword);     
             if (empty($contentStr)){
                 $contentStr = "Nothing to show...wait my developing.";
             }
@@ -130,7 +130,7 @@ class wechatCallbackapiTest
             echo "Input something...";
         }
     }
-    private function parse_keyword($key)
+    private function parse_keyword($username,$key)
     {
             $heartstone= new HeartStone();
             $cmdarr = split(" ",$key);
@@ -138,7 +138,10 @@ class wechatCallbackapiTest
             if ($cmdnostr == '000')
                 return $heartstone->show_menu();
             else if ($cmdnostr == '001')
-                return $heartstone->createDeck($cmdarr[1]);
+                return $heartstone->createDeck($username,$cmdarr[1]);
+            else if ($cmdnostr == '002')
+                return $heartstone->showdeck($username);
+
             return $this->default_text($key);
     }
     private function parse_keyword_old($key)
