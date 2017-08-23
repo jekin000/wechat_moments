@@ -1,1 +1,1 @@
-git commit -m '[037] use KV database.'
+git commit -m '[038] enhance, add datastore.php/fakedatastore.php.'
