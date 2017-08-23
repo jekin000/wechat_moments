@@ -62,7 +62,7 @@ class wechatCallbackapiTest
     }
     private function get_support_function()
     {
-            return  "目前平台V0.01功能如下:"."\n"
+            return  "目前平台V0.02功能如下:"."\n"
                     ."[000] heartstone"
                     ;
     }
@@ -133,7 +133,7 @@ class wechatCallbackapiTest
     private function parse_keyword($username,$key)
     {
             $heartstone= new HeartStone();
-            $cmdarr = split(" ",$key);
+            $cmdarr = explode(" ",$key,2);
             $cmdnostr  = $cmdarr[0];
             if ($cmdnostr == '000')
                 return $heartstone->show_menu();
