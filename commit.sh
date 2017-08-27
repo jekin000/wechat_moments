@@ -1,1 +1,1 @@
-git commit -m '[039] bug-fix, use explode to replace split'
+git commit -m '[040] feature, parse string to deck.'
