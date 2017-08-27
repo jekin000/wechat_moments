@@ -26,7 +26,17 @@ class HeartStone
         $deck = $this->parseDeck($deckstr);
         if ($deck == false)
             return 'Please input write fomate of deck.';
-        return $this->formatDeck($deck);
+        $name = $deck['name'];
+        $json = json_encode($deck);
+
+        $db = new DataStore();
+        $ret = $db->setdata('heartstone',$name.'#@#'.$userid,$json);
+        if (!$ret){
+            return "Fail to store data.\n";
+        }
+        return "create deck success!\n";
+
+        //return $this->formatDeck($deck);
     }
     public function showdeck($userid)
     {
