@@ -24,6 +24,8 @@ class HeartStone
         return "create deck success!\n";
         */
         $deck = $this->parseDeck($deckstr);
+        if ($deck == false)
+            return 'Please input write fomate of deck.';
         return $this->formatDeck($deck);
     }
     public function showdeck($userid)
@@ -36,10 +38,28 @@ class HeartStone
 
         return 'Your deck is: '.$ret."\n";
     }
+    public function showallkeys()
+    {
+        $db = new DataStore();
+        $ret = $db->getallkeys('heartstone');
+        if (count($ret) == 0)
+            return 'No data in DB.';
+        $i = 0;
+        $msg = '';
+        while ($val = current($ret))
+        {
+            $msg = $msg.$i.' '.key($ret)."\n";
+            $i = $i + 1;
+            next($ret);
+        }
+        return $msg;
+    }
     private function parseDeck($deckstr)
     {
         $deck = array();
         $arr = $this->parseName($deckstr);
+        if (strlen($arr[0]) == 0)
+            return false;
         $deck['name'] = $arr[0];
         
         $matchcnt = array('viccnt'=>0,'defcnt'=>0);

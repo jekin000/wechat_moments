@@ -8,6 +8,7 @@ $tt = new test();
 //$tt->test_array1();
 //$tt->test_parse_str();
 //$tt->test_extract_fromdeck();
+$tt->test_key();
 $userinput = '### 无情寒冬 初
 # 职业：萨满祭司
 # 模式：标准模式
@@ -37,8 +38,9 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
 # 
 # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
 ';
-$ht = new HeartStone();
-echo $ht->createDeck('aa',$userinput);
+//$ht = new HeartStone();
+//echo $ht->createDeck('aa',$userinput);
+
 
 class test
 {
@@ -158,6 +160,12 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
             echo strlen($arr[$i])."\n";
         print_r($arr);
         return;
+    }
+    
+    public function test_key()
+    {
+        $arr = array('a'=>1,'b'=>2);
+        var_dump(key($arr));
     }
 }
 

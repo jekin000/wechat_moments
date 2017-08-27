@@ -33,5 +33,14 @@ class DataStore
 
         return $dbh->get($key);
     }
+
+    public function getallkeys($appkey)
+    {
+        $dbh = $this->initHandle($appkey);
+        if (!$dbh)
+            return array();
+        # it could big than 100 
+        return $dbh->pkrget('', 100);
+    }
 }
 ?>
