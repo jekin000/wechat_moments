@@ -1,1 +1,1 @@
-git commit -m '[042] feature, store a deck with out check.'
+git commit -m '[043] feature, dbg func:delete deck; refactor to class own val.'

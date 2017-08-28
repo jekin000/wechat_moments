@@ -1,6 +1,20 @@
 <?php
 require_once('heartstone.php');
+require_once('fakedatastore.php');
 
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_WARNING, 0);
+assert_options(ASSERT_QUIET_EVAL, 1);
+
+function my_assert_handler($file, $line, $code, $desc = null)
+{
+    echo "Assertion failed at $file:$line: $code";
+    if ($desc) {
+        echo ": $desc";
+    }
+    echo "\n";
+}
+assert_options(ASSERT_CALLBACK, 'my_assert_handler');
 $tt = new test();
 //test_split();
 //test_heartstone_create();
@@ -8,7 +22,9 @@ $tt = new test();
 //$tt->test_array1();
 //$tt->test_parse_str();
 //$tt->test_extract_fromdeck();
-$tt->test_key();
+//$tt->test_key();
+$tt->run_all_test();
+
 $userinput = '### 无情寒冬 初
 # 职业：萨满祭司
 # 模式：标准模式
@@ -166,6 +182,43 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
     {
         $arr = array('a'=>1,'b'=>2);
         var_dump(key($arr));
+    }
+
+    public function test_set_get_DB_queryret()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+
+        $query = array(
+                'A#@#XYZ' => '{123}'
+                ,'B#@#XYZ' => '{456}'
+            );
+
+        $db->tstSetQueryKeys($query);
+        $hs->tstSetDbh($db);
+        
+        $ret = $hs->tstGetDbh()->getallkeys('no use'); 
+        assert('count($ret) == 2','the real count is:'.count($ret));
+        
+        $hs->dbgDelAnyDeck('no use','1 2');
+        $ret = $db->tstGetDelKeys();
+        assert('count($ret) == 0','the real count is:'.count($ret));
+
+        $hs->dbgDelAnyDeck('no use','0 1');
+        $ret = $db->tstGetDelKeys();
+        assert('count($ret) == 2','the real count is:'.count($ret));
+
+        $hs->dbgDelAnyDeck('no use','1');
+        $ret = $db->tstGetDelKeys();
+        assert('count($ret) == 1','the real count is:'.count($ret));
+        $val = current($ret);
+        assert('$val == \'B#@#XYZ\'','the real val is:'.$val);
+
+    }
+    public function run_all_test()
+    {
+        $this->test_set_get_DB_queryret();
+        echo "Test Pass.\n";
     }
 }
 

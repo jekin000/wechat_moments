@@ -1,36 +1,44 @@
 <?php
 
 require_once('datastore.php');
-//require_once('fakedatastore.php')
+//require_once('fakedatastore.php');
 
 class HeartStone
 {
+    private $dbh; 
+    
+    public function __construct()
+    {
+        $this->dbh = new DataStore('teahouse_heartstone');
+    }
+
+    public function tstSetDbh($dbh)
+    {
+        $this->dbh = $dbh;
+    }
+
+    public function tstGetDbh()
+    {
+        return $this->dbh;
+    }
+
     public function show_menu()
     {
-       return "Welcome to your heartstone V0.01:\n"
+       return "Welcome to your heartstone V0.03:\n"
            ."[001] create your deck;\n"
-           ."[002] get your deck;\n"
+           ."[002] list your decks;\n"
            ;
     }
 
     public function createDeck($userid,$deckstr) 
     {
-        /*
-        $db = new DataStore();
-        $ret = $db->setdata('heartstone',$userid,$deckstr);
-        if (!$ret){
-            return "Fail to store data.\n";
-        }
-        return "create deck success!\n";
-        */
         $deck = $this->parseDeck($deckstr);
         if ($deck == false)
             return 'Please input write fomate of deck.';
         $name = $deck['name'];
         $json = json_encode($deck);
 
-        $db = new DataStore();
-        $ret = $db->setdata('heartstone',$name.'#@#'.$userid,$json);
+        $ret = $this->dbh->setdata($userid.'#@#'.$name,$json);
         if (!$ret){
             return "Fail to store data.\n";
         }
@@ -38,27 +46,57 @@ class HeartStone
 
         //return $this->formatDeck($deck);
     }
-    public function showdeck($userid)
-    {
-        $db = new DataStore();
-        $ret = $db->getdata('heartstone',$userid);
-        if (!$ret){
-            return "Fail to get deck.\n";
-        }
 
-        return 'Your deck is: '.$ret."\n";
-    }
-    public function showallkeys()
+    public function dbgShowallkeys($userid)
     {
-        $db = new DataStore();
-        $ret = $db->getallkeys('heartstone');
+        /* TODO, check permssion*/
+        $ret = $this->dbh->getallkeys();
         if (count($ret) == 0)
             return 'No data in DB.';
         $i = 0;
         $msg = '';
         while ($val = current($ret))
         {
-            $msg = $msg.$i.' '.key($ret)."\n";
+            $msg = $msg.'['.$i.']'.' '.key($ret)."\n";
+            $i = $i + 1;
+            next($ret);
+        }
+        return $msg;
+    }
+    public function dbgDelAnyDeck($userid,$ids)
+    { 
+        /* TODO, check permssion*/
+        $idarr = explode(' ',$ids);
+
+        $ret = $this->dbh->getallkeys();
+        if (count($ret) == 0)
+            return 'No data in DB.';
+
+        $delkeys = $this->getMatchId($ret,$idarr);
+        if (count($delkeys) == 0)
+            return 'No match idx.';
+        
+        $this->dbh->delbykeys($delkeys);
+
+        $cnt = count($delkeys);
+        $msg = '';
+        for ($i=0; $i<$cnt; $i++){
+            $msg = $msg.'[Delete] '.$delkeys[$i].";\n";
+        }
+        return $msg;
+    }
+
+    public function listdeck($userid)
+    {
+        /* TODO , use deck name*/
+        $ret = $this->dbh->getallkeys($userid);
+        if (count($ret) == 0)
+            return 'No data in DB.';
+        $i = 0;
+        $msg = '';
+        while ($val = current($ret))
+        {
+            $msg = $msg.'['.$i.']'.' '.key($ret)."\n";
             $i = $i + 1;
             next($ret);
         }
@@ -78,6 +116,7 @@ class HeartStone
         $leftarr = $this->parseCardGrp($arr[1]); 
         $deck['cardgrps'] = $leftarr[0];
         $deck['hash'] = $leftarr[1];
+        $deck['isfavor'] = false;
         return $deck;
     }
     private function parseName($input)
@@ -172,6 +211,41 @@ class HeartStone
         }
 
         return '['.$deck['name'].']'." $allcnt"."x\n".$fmt;
+    }
+    private function isValidIdRange($idarr,$cnt)
+    {
+        $idarrcnt = count($idarr);
+        for ($i=0 ;$i<$idarrcnt ;$i++){
+            if ($idarr[$i] > $cnt-1)
+                return false;
+        }
+        return true;
+    }
+    private function getMatchId($set,$ids)
+    {
+        $sortret = sort($ids,SORT_NUMERIC);
+        if (!$sortret)
+            return array();
+
+        if (!$this->isValidIdRange($ids,count($set)))
+            return array();
+
+
+        $i = 0;
+        $delkeys = array();        
+        $idarrlen = count($ids);
+        while (current($set) && $idarrlen>0)
+        {
+            if ($i == $ids[0]){
+                array_push($delkeys,key($set));
+                array_shift($ids);
+                $idarrlen = $idarrlen - 1;
+            }
+
+            next($set);
+            $i = $i + 1;
+        }    
+        return $delkeys;
     }
 }
 
