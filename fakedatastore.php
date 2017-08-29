@@ -22,7 +22,7 @@ class DataStore
         return 'hello, I am fake';
     }
 
-    public function getallkeys($appkey,$prefix=false)
+    public function getallkeys($prefix=false)
     {
         return $this->queryret;
     }

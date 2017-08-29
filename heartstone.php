@@ -1,7 +1,7 @@
 <?php
 
-require_once('datastore.php');
-//require_once('fakedatastore.php');
+//require_once('datastore.php');
+require_once('fakedatastore.php');
 
 class HeartStone
 {
@@ -230,15 +230,15 @@ class HeartStone
         if (!$this->isValidIdRange($ids,count($set)))
             return array();
 
-
+        $unids = array_unique($ids);
         $i = 0;
         $delkeys = array();        
-        $idarrlen = count($ids);
+        $idarrlen = count($unids);
         while (current($set) && $idarrlen>0)
         {
-            if ($i == $ids[0]){
+            if ($i == $unids[0]){
                 array_push($delkeys,key($set));
-                array_shift($ids);
+                array_shift($unids);
                 $idarrlen = $idarrlen - 1;
             }
 

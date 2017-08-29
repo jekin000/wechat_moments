@@ -192,15 +192,16 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         $query = array(
                 'A#@#XYZ' => '{123}'
                 ,'B#@#XYZ' => '{456}'
+                ,'C#@#LMN' => '{789}'
             );
 
         $db->tstSetQueryKeys($query);
         $hs->tstSetDbh($db);
         
         $ret = $hs->tstGetDbh()->getallkeys('no use'); 
-        assert('count($ret) == 2','the real count is:'.count($ret));
+        assert('count($ret) == 3','the real count is:'.count($ret));
         
-        $hs->dbgDelAnyDeck('no use','1 2');
+        $hs->dbgDelAnyDeck('no use','8 2');
         $ret = $db->tstGetDelKeys();
         assert('count($ret) == 0','the real count is:'.count($ret));
 
@@ -213,6 +214,15 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         assert('count($ret) == 1','the real count is:'.count($ret));
         $val = current($ret);
         assert('$val == \'B#@#XYZ\'','the real val is:'.$val);
+
+        $hs->dbgDelAnyDeck('no use','2 2 0 0');
+        $ret = $db->tstGetDelKeys();
+        assert('count($ret) == 2','the real count is:'.count($ret));
+        $val = current($ret);
+        assert('$val == \'A#@#XYZ\'','the real val is:'.$val);
+        next($ret);
+        $val = current($ret);
+        assert('$val == \'C#@#LMN\'','the real val is:'.$val);
 
     }
     public function run_all_test()
