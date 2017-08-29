@@ -126,6 +126,7 @@ class HeartStone
         if (strlen($arr[0]) == 0)
             return false;
         $deck['name'] = $arr[0];
+        $deck['role'] = $arr[2];
         
         $matchcnt = array('viccnt'=>0,'defcnt'=>0);
         $deck['matchcnt'] = $matchcnt;
@@ -138,10 +139,14 @@ class HeartStone
     }
     private function parseName($input)
     {
-        $arr = explode('#',$input,5); 
+        $arr = explode('#',$input,6); 
         $name = trim($arr[3]);
-        $left = $arr[4];
-        return array($name,$left);
+        $role = $arr[4];
+        $left = $arr[5];
+
+        $rolearr = explode('：',$role);
+        $role = $rolearr[1];
+        return array($name,$left,$role);
     }
     private function parseCardGrp($leftstr)
     {

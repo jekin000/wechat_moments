@@ -139,9 +139,12 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         $hash = 'AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweICAA==';
         //echo strlen($hash)."\n"; #84
 
-        $arr = explode('#',$s,5); 
+        $arr = explode('#',$s,6); 
         $name = $arr[3];
-        $left = $arr[4];
+        $role = $arr[4];
+        $rolearr = explode('：',$role);
+        $role = $rolearr[1];
+        $left = $arr[5];
         
 
         $decks = array();
@@ -156,6 +159,7 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
 
 
         echo 'name='.$name."\n";
+        echo 'role='.$role."\n";
         $decklen = count($decks);
         for ($i=0; $i<$decklen; $i++)
             echo $decks[$i]."\n";
@@ -257,6 +261,7 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
     }
     public function run_all_test()
     {
+        $this->test_parse_str();
         $this->test_set_get_DB_queryret();
         $this->test_get_userdeck();
         echo "Test Pass.\n";
