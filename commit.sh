@@ -1,1 +1,1 @@
-git commit -m '[046] feature, add role to deck.'
+git commit -m '[047] feature, set/list favorite deck.'

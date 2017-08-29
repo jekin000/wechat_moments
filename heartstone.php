@@ -22,27 +22,40 @@ class HeartStone
         return $this->dbh;
     }
 
-    public function show_menu()
+    public function showMenu()
     {
-       return "Welcome to your heartstone V0.03:\n"
+       return "Welcome to your heartstone V0.04:\n"
            ."[001] create your deck;\n"
            ."[002] list your decks;\n"
+           ."[003] set your favorite decks;\n"
            ;
+    }
+    
+    public function showCreateDeckResult($userid,$deckstr) 
+    {
+        $deck = $this->createDeck($userid,$deckstr); 
+        if ($deck == 'deck invalid')
+            return 'Please input write fomate of deck.';
+        else if ($deck == 'save fail') 
+            return "Fail to store data.\n";
+        
+        return "create deck success!\n";
+        
     }
 
     public function createDeck($userid,$deckstr) 
     {
         $deck = $this->parseDeck($deckstr);
         if ($deck == false)
-            return 'Please input write fomate of deck.';
+            return 'deck invalid';
         $name = $deck['name'];
         $json = json_encode($deck);
 
         $ret = $this->dbh->setdata($userid.'#@#'.$name,$json);
         if (!$ret){
-            return "Fail to store data.\n";
+            return "save fail";
         }
-        return "create deck success!\n";
+        return $json;
 
         //return $this->formatDeck($deck);
     }
@@ -110,14 +123,79 @@ class HeartStone
 
         $decks = array();
         $i = 0;
-        while (current($ret))
+        while ($val = current($ret))
         {
+            $deck = json_decode($val,true);
+
             $key = key($ret);
             $arr = explode('#@#',$key);
+            if ($deck['isfavor'])
+                $arr[1] = $arr[1].' *';
             array_push($decks,$arr[1]);
             next($ret);
         }
         return $decks;
+    }
+    public function showSetFavorDeck($userid,$deckid)
+    {
+        $ret = $this->setFavorDeck($userid,$deckid);
+        if (!$ret)
+            return 'Set favor fail';
+        return $this->showListDeck($userid);
+    }
+
+    public function setFavorDeck($userid,$deckid)
+    {
+        $ret = is_numeric($deckid);
+        if (!$ret)
+            return false;
+        $deckidnum = intval($deckid);
+        if ($deckidnum < 0)
+            return false;
+
+        $decks = $this->dbh->getallkeys($userid);
+        $deckcnt = count($decks);
+        if ($deckcnt == 0)
+            return false;
+        if ($deckidnum >= $deckcnt)
+            return false;
+        
+        $i = 0; 
+        $updatedecks = array();
+        while ($eachval = current($decks)){
+            $deck = json_decode($eachval,true);
+            /* update favor*/
+            if ($i == $deckidnum){
+                if (!$deck['isfavor']){
+                    $deck['isfavor'] = true;
+                    array_push($updatedecks,$deck);
+                }
+            }
+            else if ($deck['isfavor']){
+                $deck['isfavor'] = false;
+                array_push($updatedecks,$deck);
+            }
+            $i = $i + 1;
+            next($decks);
+        }
+        
+        
+        while ($eachval = current($updatedecks)){
+            $ret = $this->saveDeck($userid,$eachval);
+            if (!$ret)
+                return false;
+            next($updatedecks);
+        }
+        
+        return true;
+    }
+    private function saveDeck($userid,$deck)
+    {
+        $ret = $this->dbh->setdata($userid.'#@#'.$deck['name'],json_encode($deck));
+        if (!$ret)
+            return false;
+        
+        return true;
     }
     private function parseDeck($deckstr)
     {

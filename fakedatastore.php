@@ -4,16 +4,19 @@ class DataStore
 {
     private $queryret;
     private $delkeys;
+    private $setdataval;
 
     public function __construct()
     {
         $this->queryret = array('hello');
         $this->delkeys  = array();
+        $this->setdataval = array();
     }
 
     /* real fake API */
-    public function setdata($appkey,$key,$val)
+    public function setdata($key,$val)
     {
+        array_push($this->setdataval,$val);
         return true;
     }
 
@@ -33,6 +36,12 @@ class DataStore
     }
 
     /* test function*/
+    public function tstClearSetval()
+    {
+        $this->setdataval = array();
+        return;
+    }
+
     public function tstSetQueryKeys($queryret)
     {
         $this->queryret = $queryret;
@@ -40,6 +49,11 @@ class DataStore
     public function tstGetDelKeys()
     {
         return $this->delkeys;
+    }
+    
+    public function tstGetSetData()
+    {
+        return $this->setdataval;
     }
 }
 
