@@ -140,7 +140,7 @@ class wechatCallbackapiTest
             else if ($cmdnostr == '001' && count($cmdarr)>1)
                 return $heartstone->createDeck($username,$cmdarr[1]);
             else if ($cmdnostr == '002')
-                return $heartstone->listdeck($username);
+                return $heartstone->showListDeck($username);
             else if ($cmdnostr == '799')
                 return $heartstone->dbgShowallkeys($username);
             else if ($cmdnostr == '800' && count($cmdarr)>1)

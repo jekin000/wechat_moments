@@ -1,7 +1,7 @@
 <?php
 
-//require_once('datastore.php');
-require_once('fakedatastore.php');
+require_once('datastore.php');
+//require_once('fakedatastore.php');
 
 class HeartStone
 {
@@ -86,21 +86,38 @@ class HeartStone
         return $msg;
     }
 
-    public function listdeck($userid)
+    public function showListDeck($userid)
     {
-        /* TODO , use deck name*/
-        $ret = $this->dbh->getallkeys($userid);
-        if (count($ret) == 0)
+        $decks = $this->listdeck($userid); 
+        if (count($decks) == 0)
             return 'No data in DB.';
+
         $i = 0;
         $msg = '';
-        while ($val = current($ret))
+        while ($val = current($decks))
         {
-            $msg = $msg.'['.$i.']'.' '.key($ret)."\n";
+            $msg = $msg.'['.$i.']'.' '.$decks[$i]."\n";
             $i = $i + 1;
-            next($ret);
+            next($decks);
         }
         return $msg;
+    }
+    public function listdeck($userid)
+    {
+        $ret = $this->dbh->getallkeys($userid);
+        if (count($ret) == 0)
+            return $ret;
+
+        $decks = array();
+        $i = 0;
+        while (current($ret))
+        {
+            $key = key($ret);
+            $arr = explode('#@#',$key);
+            array_push($decks,$arr[1]);
+            next($ret);
+        }
+        return $decks;
     }
     private function parseDeck($deckstr)
     {

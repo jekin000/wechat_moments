@@ -223,11 +223,42 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         next($ret);
         $val = current($ret);
         assert('$val == \'C#@#LMN\'','the real val is:'.$val);
+        return;
+
+    }
+
+    public function test_get_userdeck()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+
+        $query = array(
+            );
+        $db->tstSetQueryKeys($query);
+        $hs->tstSetDbh($db);
+        $ret = $hs->tstGetDbh()->getallkeys('A'); 
+        assert('count($ret) == 0','the real count is:'.count($ret));
+
+        $query = array(
+                'A#@#XYZ' => '{123}'
+                ,'A#@#ABC' => '{456}'
+            );
+        $db->tstSetQueryKeys($query);
+        $ret = $hs->tstGetDbh()->getallkeys('A'); 
+        assert('count($ret) == 2','the real count is:'.count($ret));
+
+        $decks = $hs->listdeck('A'); 
+        assert('count($decks) == 2','the real count is:'.count($decks));
+        assert('$decks[0] == \'XYZ\'','the real name is:'.$decks[0]);
+        assert('$decks[1] == \'ABC\'','the real name is:'.$decks[1]);
+
+        return;
 
     }
     public function run_all_test()
     {
         $this->test_set_get_DB_queryret();
+        $this->test_get_userdeck();
         echo "Test Pass.\n";
     }
 }
