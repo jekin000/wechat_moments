@@ -1,1 +1,1 @@
-git commit -m '[048] feature, set vic/lose to favorite deck.'
+git commit -m '[049] feature, list all decks vicrate.'

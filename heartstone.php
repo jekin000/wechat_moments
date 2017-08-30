@@ -24,11 +24,12 @@ class HeartStone
 
     public function showMenu()
     {
-       return "Welcome to your heartstone V0.05:\n"
+       return "Welcome to your heartstone V0.06:\n"
            ."[001] create your deck;\n"
-           ."[002] list your decks;\n"
+           ."[002] list your decks by favor;\n"
            ."[003] set your favorite decks;\n"
            ."[004] set result to your favor deck;\n"
+           ."[005] list your decsk by win-rate;\n"
            ;
     }
     
@@ -50,9 +51,7 @@ class HeartStone
         if (!$deck)
             return 'set result fail';
        
-        $rate = $deck['matchcnt']['viccnt'] 
-            / ($deck['matchcnt']['viccnt']+$deck['matchcnt']['defcnt'])*1.0;  
-        return sprintf("%.2f%%",$rate*100);
+        return $this->fmtDeckWinRate($deck); 
     }
 
     public function createDeck($userid,$deckstr) 
@@ -111,9 +110,13 @@ class HeartStone
         return $msg;
     }
 
-    public function showListDeck($userid)
+    public function showListDeck($userid,$type=false)
     {
-        $decks = $this->listdeck($userid); 
+        if ($type == 'by-rate')
+            $decks = $this->listdeck($userid,$type); 
+        else
+            $decks = $this->listdeck($userid); 
+
         if (count($decks) == 0)
             return 'No data in DB.';
 
@@ -127,7 +130,7 @@ class HeartStone
         }
         return $msg;
     }
-    public function listdeck($userid)
+    public function listdeck($userid,$type=false)
     {
         $ret = $this->dbh->getallkeys($userid);
         if (count($ret) == 0)
@@ -141,8 +144,13 @@ class HeartStone
 
             $key = key($ret);
             $arr = explode('#@#',$key);
-            if ($deck['isfavor'])
-                $arr[1] = $arr[1].' *';
+            if (!$type){
+                if ($deck['isfavor'])
+                    $arr[1] = $arr[1].' *';
+            }
+            else if ($type == 'by-rate'){
+                $arr[1] = $arr[1].' '.$this->fmtDeckWinRate($deck);
+            }
             array_push($decks,$arr[1]);
             next($ret);
         }
@@ -401,6 +409,20 @@ class HeartStone
         }    
         return $delkeys;
     }
+    private function fmtDeckWinRate($deck)
+    {
+        if ($deck['matchcnt']['viccnt']
+            +$deck['matchcnt']['viccnt'] == 0)
+            return '';
+
+        $rate = $deck['matchcnt']['viccnt'] 
+            / ($deck['matchcnt']['viccnt']+$deck['matchcnt']['defcnt'])*1.0;  
+        if ($rate == 0)
+            return '';
+
+        return sprintf("%.2f%%",$rate*100);
+    }
+
 }
 
 ?>
