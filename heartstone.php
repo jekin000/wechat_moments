@@ -24,10 +24,11 @@ class HeartStone
 
     public function showMenu()
     {
-       return "Welcome to your heartstone V0.04:\n"
+       return "Welcome to your heartstone V0.05:\n"
            ."[001] create your deck;\n"
            ."[002] list your decks;\n"
            ."[003] set your favorite decks;\n"
+           ."[004] set result to your favor deck;\n"
            ;
     }
     
@@ -41,6 +42,17 @@ class HeartStone
         
         return "create deck success!\n";
         
+    }
+
+    public function showSetFavorResult($userid,$isvic)
+    {
+        $deck = $this->setFavorResult($userid,$isvic); 
+        if (!$deck)
+            return 'set result fail';
+       
+        $rate = $deck['matchcnt']['viccnt'] 
+            / ($deck['matchcnt']['viccnt']+$deck['matchcnt']['defcnt'])*1.0;  
+        return sprintf("%.2f%%",$rate*100);
     }
 
     public function createDeck($userid,$deckstr) 
@@ -189,6 +201,48 @@ class HeartStone
         
         return true;
     }
+    public function setFavorResult($userid,$isvic)
+    {
+        $ret = is_numeric($isvic);
+        if (!$ret)
+            return false;
+        $isvicnum = intval($isvic);
+        if ($isvicnum!=0 && $isvicnum!=1)
+            return false;
+        
+        $deck = $this->getFavorDeck($userid);
+        if (!$deck)
+            return false;
+
+        if ($isvicnum == 1)
+            $deck['matchcnt']['viccnt'] = $deck['matchcnt']['viccnt'] + 1;
+        else
+            $deck['matchcnt']['defcnt'] = $deck['matchcnt']['defcnt'] + 1;
+
+        /* TODO recover card count.*/
+        $ret = $this->saveDeck($userid,$deck);
+        if (!$ret)
+            return false;
+        return $deck;
+    }
+
+    private function getFavorDeck($userid)
+    {
+        $ret = $this->dbh->getallkeys($userid);
+        if (count($ret) == 0)
+            return $ret;
+
+        while ($val = current($ret))
+        {
+            $deck = json_decode($val,true);
+
+            if ($deck['isfavor'])
+                return $deck;
+            next($ret);
+        }
+        return false;
+    }
+
     private function saveDeck($userid,$deck)
     {
         $ret = $this->dbh->setdata($userid.'#@#'.$deck['name'],json_encode($deck));

@@ -143,6 +143,8 @@ class wechatCallbackapiTest
                 return $heartstone->showListDeck($username);
             else if ($cmdnostr == '003' && count($cmdarr)>1)
                 return $heartstone->showSetFavorDeck($username,$cmdarr[1]);
+            else if ($cmdnostr == '004' && count($cmdarr)>1)
+                return $heartstone->showSetFavorResult($username,$cmdarr[1]);
             else if ($cmdnostr == '799')
                 return $heartstone->dbgShowallkeys($username);
             else if ($cmdnostr == '800' && count($cmdarr)>1)
