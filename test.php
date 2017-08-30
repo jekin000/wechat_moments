@@ -99,8 +99,8 @@ class test
         # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
         ';
 
-        $this->jsondeck1 = '
-{"name":"\u65e0\u60c5\u5bd2\u51ac \u521d","role":"\u8428\u6ee1\u796d\u53f8\n        ","matchcnt":{"viccnt":0,"defcnt":0},"cardgrps":[{"id":0,"name":"\u4f4e\u6e29\u9759\u6ede","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u51b7\u51bb\u9c7c\u4eba","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u8870\u53d8","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u5996\u672f","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u6cd5\u529b\u4e4b\u6f6e\u56fe\u817e","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u6d77\u5fb7\u5c3c\u5c14\u51b0\u971c\u9a91\u58eb","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u6e29\u6cc9\u5b88\u536b","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u7834\u51b0\u65a7","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u8fbe\u5361\u83b1\u9632\u5fa1\u8005","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u95ea\u7535\u98ce\u66b4","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u9526\u9c7c\u4eba\u6c34\u8bed\u8005","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u96ea\u5d29","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u5deb\u6bd2\u5996\u672f\u5e08","cost":"5","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u706b\u5c71\u55b7\u53d1","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u51b0\u51bb\u7c89\u788e\u8005","cost":"6","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u51b0\u971c\u5143\u7d20","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u706b\u5143\u7d20","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u83ab\u62c9\u6bd4","cost":"6","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false}],"hash":" \n        AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C\/s0Cis4CuM4CweICAA==\n        ","isfavor":false}';
+        $this->jsondeck1 = '{"name":"\u65e0\u60c5\u5bd2\u51ac \u521d","role":"\u8428\u6ee1\u796d\u53f8","matchcnt":{"viccnt":0,"defcnt":0}'
+.',"cardgrps":[{"id":0,"name":"\u51b0\u5ddd\u88c2\u7247","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u4f4e\u6e29\u9759\u6ede","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u51b7\u51bb\u9c7c\u4eba","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u8870\u53d8","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u5996\u672f","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u6cd5\u529b\u4e4b\u6f6e\u56fe\u817e","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u6d77\u5fb7\u5c3c\u5c14\u51b0\u971c\u9a91\u58eb","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u6e29\u6cc9\u5b88\u536b","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u7834\u51b0\u65a7","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u8fbe\u5361\u83b1\u9632\u5fa1\u8005","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u95ea\u7535\u98ce\u66b4","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u9526\u9c7c\u4eba\u6c34\u8bed\u8005","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u96ea\u5d29","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u5deb\u6bd2\u5996\u672f\u5e08","cost":"5","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u706b\u5c71\u55b7\u53d1","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u51b0\u51bb\u7c89\u788e\u8005","cost":"6","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u51b0\u971c\u5143\u7d20","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u706b\u5143\u7d20","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":18,"name":"\u83ab\u62c9\u6bd4","cost":"6","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false}],"hash":"AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C\/s0Cis4CuM4CweICAA==","isfavor":false}';
         $this->deck2 = '
                 ### 冰火融合
                 # 职业：法师
@@ -132,7 +132,7 @@ class test
                 # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
         ';
         $this->jsondeck2 = '
-{"name":"\u51b0\u706b\u878d\u5408","role":"\u6cd5\u5e08\n                ","matchcnt":{"viccnt":0,"defcnt":0},"cardgrps":[{"id":0,"name":"\u6cd5\u529b\u6d6e\u9f99","cost":"1","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u706b\u7fbd\u7cbe\u7075","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u5bd2\u51b0\u7bad","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u5bd2\u51b0\u884c\u8005","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u6d3b\u4f53\u98ce\u66b4","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u51b0\u51b7\u9b3c\u9b42","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u51b0\u971c\u65b0\u661f","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u5965\u672f\u667a\u6167","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u51b0\u9525\u672f","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u53d8\u5f62\u672f","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u6c34\u5143\u7d20","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u84b8\u6c7d\u6d8c\u52a8\u8005","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u51db\u98ce\u5deb\u5e08","cost":"5","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u5361\u5229\u83ab\u65af\u7684\u4ec6\u4ece","cost":"5","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u66b4\u98ce\u96ea","cost":"6","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u706b\u7130\u4e4b\u5730\u4f20\u9001\u95e8","cost":"7","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u706b\u7130\u4f7f\u8005","cost":"7","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u70c8\u7130\u98ce\u66b4","cost":"7","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":19,"name":"","cost":"","count":"","oricount":"","prob":0,"appear":0,"appearsum":0,"istmp":false}],"hash":null,"isfavor":false}
+{"name":"\u51b0\u706b\u878d\u5408","role":"\u6cd5\u5e08","matchcnt":{"viccnt":0,"defcnt":0},"cardgrps":[{"id":0,"name":"\u51b0\u5ddd\u88c2\u7247","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u6cd5\u529b\u6d6e\u9f99","cost":"1","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u706b\u7fbd\u7cbe\u7075","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u5bd2\u51b0\u7bad","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u5bd2\u51b0\u884c\u8005","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u6d3b\u4f53\u98ce\u66b4","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u51b0\u51b7\u9b3c\u9b42","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u51b0\u971c\u65b0\u661f","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u5965\u672f\u667a\u6167","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u51b0\u9525\u672f","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u53d8\u5f62\u672f","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u6c34\u5143\u7d20","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u84b8\u6c7d\u6d8c\u52a8\u8005","cost":"4","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u51db\u98ce\u5deb\u5e08","cost":"5","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u5361\u5229\u83ab\u65af\u7684\u4ec6\u4ece","cost":"5","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u66b4\u98ce\u96ea","cost":"6","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u706b\u7130\u4e4b\u5730\u4f20\u9001\u95e8","cost":"7","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u706b\u7130\u4f7f\u8005","cost":"7","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":18,"name":"\u70c8\u7130\u98ce\u66b4","cost":"7","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false}],"hash":"AAECAf0ECJUDrgPJA8sE7AejtgLHxwLczQILTYsDqwSWBZzAApfBAsLBAuvCAsLDAsjHAtTOAgA=","isfavor":false}
         ';
         $this->deck3 = '
                 ### 贼之奇迹
@@ -165,7 +165,7 @@ class test
                 # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
         ';
         $this->jsondeck3 = '
-{"name":"\u8d3c\u4e4b\u5947\u8ff9","role":"\u6f5c\u884c\u8005\n                ","matchcnt":{"viccnt":0,"defcnt":0},"cardgrps":[{"id":0,"name":"\u4f3a\u673a\u5f85\u53d1","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u80cc\u523a","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u51b7\u8840","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u5357\u6d77\u8239\u5de5","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u6d77\u76d7\u5e15\u5947\u65af","cost":"1","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u523a\u9aa8","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u6bd2\u5203","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u72d7\u5934\u4eba\u5730\u535c\u5e08","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u95f7\u68cd","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u98df\u4eba\u8349","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u4efb\u52a1\u8fbe\u4eba","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u519b\u60c5\u4e03\u5904\u7279\u5de5","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u5200\u6247","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u6d78\u6bd2\u6b66\u5668","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u6bd2\u5fc3\u8005\u590f\u514b\u91cc\u5c14","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u65e0\u9762\u64cd\u7eb5\u8005","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u7a74\u5c45\u4eba\u5f3a\u76d7","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u52a0\u57fa\u68ee\u62cd\u5356\u5e08","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false}],"hash":"\n                AAECAaIHCJMEoAWXBoOsApG8Avq\/AoDCAurGAgu0AYwCzQO9BJsF1AWIB6QH3QiGCfW7AgA=\n                ","isfavor":false}
+{"name":"\u8d3c\u4e4b\u5947\u8ff9","role":"\u6f5c\u884c\u8005","matchcnt":{"viccnt":0,"defcnt":0},"cardgrps":[{"id":0,"name":"\u4f2a\u9020\u7684\u5e78\u8fd0\u5e01","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u4f3a\u673a\u5f85\u53d1","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u80cc\u523a","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u51b7\u8840","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u5357\u6d77\u8239\u5de5","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u6d77\u76d7\u5e15\u5947\u65af","cost":"1","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u523a\u9aa8","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u6bd2\u5203","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u72d7\u5934\u4eba\u5730\u535c\u5e08","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u95f7\u68cd","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u98df\u4eba\u8349","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u4efb\u52a1\u8fbe\u4eba","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u519b\u60c5\u4e03\u5904\u7279\u5de5","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u5200\u6247","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u6d78\u6bd2\u6b66\u5668","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u6bd2\u5fc3\u8005\u590f\u514b\u91cc\u5c14","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u65e0\u9762\u64cd\u7eb5\u8005","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u7a74\u5c45\u4eba\u5f3a\u76d7","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":18,"name":"\u52a0\u57fa\u68ee\u62cd\u5356\u5e08","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false}],"hash":"AAECAaIHCJMEoAWXBoOsApG8Avq\/AoDCAurGAgu0AYwCzQO9BJsF1AWIB6QH3QiGCfW7AgA=","isfavor":false}
         ';
     }
 
@@ -259,7 +259,7 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         $decks = array();
         $arrleft =  explode('#',$left);
         $arrleftcnt = count($arrleft);
-        for ($i=4; $i<$arrleftcnt; $i++){
+        for ($i=3; $i<$arrleftcnt; $i++){
             if (strlen($arrleft[$i])<80 && strlen($arrleft[$i])>2)
                 array_push($decks,$arrleft[$i]);
             else if (strlen($arrleft[$i])>80 &&strlen($arrleft[$i])<118)
@@ -529,13 +529,84 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         assert('$lose == 1','the real lose is:'.$lose);
 
     }
+    public function test_draw_cards()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+        $hs->tstSetDbh($db);
+
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => $this->jsondeck2
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+
+
+        $hs->setFavorDeck('A','1');
+        $dbSetRes = $db->tstGetSetData();
+        $deck = json_decode($dbSetRes[0],true);
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => json_encode($deck)
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+        $cards = $deck['cardgrps'];
+        $allcardscnt = $hs->getCardsCnt($deck);  
+        assert('$allcardscnt == 30','the real allcardscnt is:'.$allcardscnt);
+        $card0 = $cards[0];  
+        $card1 = $cards[1];  
+        $card2 = $cards[2];  
+        assert('$card0["count"] == 2','the real card0 cnt is:'.$card0['count']);
+        assert('$card1["count"] == 1','the real card1 cnt is:'.$card1['count']);
+        assert('$card2["count"] == 2','the real card2 cnt is:'.$card2['count']);
+
+        $db->tstClearSetval();
+        $hs->drawCards('A','0 1 2');
+        $dbSetRes = $db->tstGetSetData();
+        $deck = json_decode($dbSetRes[0],true);
+        $cards = $deck['cardgrps'];
+        $allcardscnt = $hs->getCardsCnt($deck);  
+        assert('$allcardscnt == 27','the real allcardscnt is:'.$allcardscnt);
+        $card0 = $cards[0];  
+        $card1 = $cards[1];  
+        $card2 = $cards[2];  
+        assert('$card0["count"] == 1','the real card0 cnt is:'.$card0['count']);
+        assert('$card1["count"] == 0','the real card1 cnt is:'.$card1['count']);
+        assert('$card2["count"] == 1','the real card2 cnt is:'.$card2['count']);
+
+        /* test restore sub api*/
+        $deck = $hs->restoreDeck($deck);
+        $cards = $deck['cardgrps'];
+        $allcardscnt = $hs->getCardsCnt($deck);  
+        assert('$allcardscnt == 30','the real allcardscnt is:'.$allcardscnt);
+        $card0 = $cards[0];  
+        $card1 = $cards[1];  
+        $card2 = $cards[2];  
+        assert('$card0["count"] == 2','the real card0 cnt is:'.$card0['count']);
+        assert('$card1["count"] == 1','the real card1 cnt is:'.$card1['count']);
+        assert('$card2["count"] == 2','the real card2 cnt is:'.$card2['count']);
+
+        return;
+    }
+    public function showDeck()
+    {
+        $hs = new  HeartStone();
+        $deck = $hs->createDeck('A',$this->deck3);
+        echo json_encode($deck)."\n";
+        return;
+    }
+
     public function run_all_test()
     {
         //$this->test_parse_str();
+        //$this->showDeck();
         $this->test_set_get_DB_queryret();
         $this->test_get_userdeck();
         $this->test_get_userdeck_withfavor();
         $this->test_set_favor_result();
+        $this->test_draw_cards();
     }
 }
 

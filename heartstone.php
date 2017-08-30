@@ -24,15 +24,25 @@ class HeartStone
 
     public function showMenu()
     {
-       return "Welcome to your heartstone V0.06:\n"
+       return "Welcome to your heartstone V0.07:\n"
            ."[001] create your deck;\n"
            ."[002] list your decks by favor;\n"
            ."[003] set your favorite decks;\n"
            ."[004] set result to your favor deck;\n"
-           ."[005] list your decsk by win-rate;\n"
+           ."[005] list your decks by win-rate;\n"
+           ."[006] draw cards;\n"
            ;
     }
     
+    public function showDrawCards($userid,$drawids)
+    {
+        $deck = $this->drawCards($userid,$drawids);
+        if (!$deck)
+            return 'Draw card fail.';
+
+        return $this->formatDeck($deck,true);
+        
+    }
     public function showCreateDeckResult($userid,$deckstr) 
     {
         $deck = $this->createDeck($userid,$deckstr); 
@@ -66,7 +76,7 @@ class HeartStone
         if (!$ret){
             return "save fail";
         }
-        return $json;
+        return $deck;
 
         //return $this->formatDeck($deck);
     }
@@ -227,10 +237,69 @@ class HeartStone
         else
             $deck['matchcnt']['defcnt'] = $deck['matchcnt']['defcnt'] + 1;
 
-        /* TODO recover card count.*/
+        $deck = $this->restoreDeck($deck);
         $ret = $this->saveDeck($userid,$deck);
         if (!$ret)
             return false;
+        return $deck;
+    }
+    public function getCardsCnt($deck) 
+    {
+        $cards = $deck['cardgrps'];
+        $cnt = 0;
+        while ($val = current($cards)){
+            $cnt += $val['count'];
+            next($cards);
+        }
+        return $cnt;
+    }
+
+    public function drawCards($userid,$cardnos)
+    {
+        $ids = $this->strToIdSeq($cardnos); 
+        $ret = $this->isValidIdSeq($ids,0,0,29);
+        if (!$ret)
+            return false;
+
+        $deck = $this->getFavorDeck($userid);
+        if (!$deck)
+            return false;
+
+        $ret = sort($ids,SORT_NUMERIC);
+        if (!$ret)
+            return false;
+
+        $cardcnt = count($deck['cardgrps']);
+        $idarrlen = count($ids);
+        for ($i=0; $i<$cardcnt ;$i++)
+        {
+            if ($idarrlen <= 0)
+                break;
+
+            if ($deck['cardgrps'][$i]['id'] == $ids[0]){
+                if ($deck['cardgrps'][$i]['count'] > 0){
+                    $deck['cardgrps'][$i]['count']--;
+                    array_shift($ids);
+                    $idarrlen = $idarrlen - 1;
+                }
+            }
+        }
+
+        $ret = $this->saveDeck($userid,$deck);
+        if (!$ret)
+            return false;
+
+        return $deck;
+    }
+    public function restoreDeck($deck)
+    {
+        $cardcnt = count($deck['cardgrps']);
+        for ($i=0; $i<$cardcnt ;$i++)
+        {
+            $deck['cardgrps'][$i]['count']
+                = $deck['cardgrps'][$i]['oricount'];
+        }
+
         return $deck;
     }
 
@@ -266,7 +335,7 @@ class HeartStone
         if (strlen($arr[0]) == 0)
             return false;
         $deck['name'] = $arr[0];
-        $deck['role'] = $arr[2];
+        $deck['role'] = trim($arr[2]);
         
         $matchcnt = array('viccnt'=>0,'defcnt'=>0);
         $deck['matchcnt'] = $matchcnt;
@@ -294,14 +363,30 @@ class HeartStone
         $arrleftcnt = count($arrleft);
 
         $oricards = array();
-        for ($i=4; $i<$arrleftcnt; $i++){
-            if (strlen($arrleft[$i])<80 && strlen($arrleft[$i])>2){
-                array_push($oricards,$this->parseCard($arrleft[$i],$i-4));
+
+        /*
+                Array
+                (
+                    [0] =>  模式：标准模式
+                    [1] =>  猛犸年
+                    [2] => 
+                    [3] =>  2x (1) 冰川裂片
+                    [4] =>  1x (2) 低温静滞
+                    [5] =>  2x (2) 冷冻鱼人
+                    ...
+                )
+                hash = 70+
+                comment = 100+
+        */
+        for ($i=3; $i<$arrleftcnt; $i++){
+            $len = strlen(trim($arrleft[$i]));
+            if ($len<70 && $len>2){
+                array_push($oricards,$this->parseCard($arrleft[$i],$i-3));
             }
-            else if (strlen($arrleft[$i])>80 &&strlen($arrleft[$i])<110){
+            else if ($len>70 && $len<110){
                 # hash = 87
                 # comment = 110
-                $hash = $arrleft[$i];
+                $hash = trim($arrleft[$i]);
                 break;
             }
         }
@@ -380,6 +465,33 @@ class HeartStone
         for ($i=0 ;$i<$idarrcnt ;$i++){
             if ($idarr[$i] > $cnt-1)
                 return false;
+        }
+        return true;
+    }
+    private function strToIdSeq($strIdSeq)
+    {
+        $tmparr = array();
+        $nos = explode(' ',$strIdSeq);
+       
+        $cnt = count($nos);
+        for ($i=0; $i<$cnt; $i++){
+            array_push($tmparr,intval($nos[$i]));
+        }
+
+        $out = array_unique($tmparr);
+
+
+        return $out;
+    }
+    private function isValidIdSeq($idseq,$cntlmt,$min,$max)
+    {
+        if ($cntlmt>0 && count($idseq)>$cntlmt)
+            return false;
+        
+        while ($val = current($idseq)){
+            if ($val<$min || $val>$max)
+                return false;
+            next($idseq);
         }
         return true;
     }
