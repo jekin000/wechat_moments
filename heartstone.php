@@ -24,7 +24,7 @@ class HeartStone
 
     public function showMenu()
     {
-       return "Welcome to your heartstone V0.07:\n"
+       return "Welcome to your heartstone V0.5:\n"
            ."[001] create your deck;\n"
            ."[002] list your decks by favor;\n"
            ."[003] set your favorite decks;\n"
@@ -269,20 +269,23 @@ class HeartStone
         if (!$ret)
             return false;
 
+        $allcardcnt = $this->getCardsCnt($deck);
         $cardcnt = count($deck['cardgrps']);
         $idarrlen = count($ids);
+        $allcardcnt = $allcardcnt - $idarrlen;
+
         for ($i=0; $i<$cardcnt ;$i++)
         {
-            if ($idarrlen <= 0)
-                break;
-
-            if ($deck['cardgrps'][$i]['id'] == $ids[0]){
-                if ($deck['cardgrps'][$i]['count'] > 0){
-                    $deck['cardgrps'][$i]['count']--;
-                    array_shift($ids);
-                    $idarrlen = $idarrlen - 1;
+            if ($idarrlen > 0){
+                if ($deck['cardgrps'][$i]['id'] == $ids[0]){
+                    if ($deck['cardgrps'][$i]['count'] > 0){
+                        $deck['cardgrps'][$i]['count']--;
+                        array_shift($ids);
+                        $idarrlen = $idarrlen - 1;
+                    }
                 }
             }
+            $deck['cardgrps'][$i]['prob'] = $deck['cardgrps'][$i]['count']/$allcardcnt*1.0;
         }
 
         $ret = $this->saveDeck($userid,$deck);
@@ -298,6 +301,7 @@ class HeartStone
         {
             $deck['cardgrps'][$i]['count']
                 = $deck['cardgrps'][$i]['oricount'];
+            $deck['cardgrps'][$i]['prob'] = $deck['cardgrps'][$i]['count']/30.0;
         }
 
         return $deck;
@@ -444,7 +448,7 @@ class HeartStone
 
         for ($i=0; $i<$cardslen; $i++)
         {
-            if ($cardgrps[$i]['count'] > 0)
+            if ($cardgrps[$i]['count'] > 0){
                 $fmt = $fmt.$cardgrps[$i]['id']
                     .' ('.$cardgrps[$i]['cost'].')'
                     .' '.$cardgrps[$i]['count'].'x'
@@ -455,6 +459,7 @@ class HeartStone
                     $fmt = $fmt.' '.sprintf("%.2f%%", $cardgrps[$i]['prob']* 100);
 
                 $fmt = $fmt."\n";
+            }
         }
 
         return '['.$deck['name'].']'." $allcnt"."x\n".$fmt;
