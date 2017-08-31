@@ -66,6 +66,9 @@ class test
     private $jsondeck2;
     private $deck3;
     private $jsondeck3;
+    private $deck2_newcard;
+    private $deck2_diffname; 
+    private $deck2_samecard_cnt_diff; 
 
     public function __construct()
     {
@@ -166,6 +169,97 @@ class test
         ';
         $this->jsondeck3 = '
 {"name":"\u8d3c\u4e4b\u5947\u8ff9","role":"\u6f5c\u884c\u8005","matchcnt":{"viccnt":0,"defcnt":0},"cardgrps":[{"id":0,"name":"\u4f2a\u9020\u7684\u5e78\u8fd0\u5e01","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":1,"name":"\u4f3a\u673a\u5f85\u53d1","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":2,"name":"\u80cc\u523a","cost":"0","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":3,"name":"\u51b7\u8840","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":4,"name":"\u5357\u6d77\u8239\u5de5","cost":"1","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":5,"name":"\u6d77\u76d7\u5e15\u5947\u65af","cost":"1","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":6,"name":"\u523a\u9aa8","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":7,"name":"\u6bd2\u5203","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":8,"name":"\u72d7\u5934\u4eba\u5730\u535c\u5e08","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":9,"name":"\u95f7\u68cd","cost":"2","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":10,"name":"\u98df\u4eba\u8349","cost":"2","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":11,"name":"\u4efb\u52a1\u8fbe\u4eba","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":12,"name":"\u519b\u60c5\u4e03\u5904\u7279\u5de5","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":13,"name":"\u5200\u6247","cost":"3","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false},{"id":14,"name":"\u6d78\u6bd2\u6b66\u5668","cost":"3","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":15,"name":"\u6bd2\u5fc3\u8005\u590f\u514b\u91cc\u5c14","cost":"4","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":16,"name":"\u65e0\u9762\u64cd\u7eb5\u8005","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":17,"name":"\u7a74\u5c45\u4eba\u5f3a\u76d7","cost":"5","count":"1","oricount":"1","prob":0.033333333333333,"appear":0,"appearsum":0,"istmp":false},{"id":18,"name":"\u52a0\u57fa\u68ee\u62cd\u5356\u5e08","cost":"6","count":"2","oricount":"2","prob":0.066666666666667,"appear":0,"appearsum":0,"istmp":false}],"hash":"AAECAaIHCJMEoAWXBoOsApG8Avq\/AoDCAurGAgu0AYwCzQO9BJsF1AWIB6QH3QiGCfW7AgA=","isfavor":false}
+        ';
+        $this->deck2_newcard = '
+                ### 冰火融合
+                # 职业：法师
+                # 模式：标准模式
+                # 猛犸年
+                #
+                # 2x (1) 冰川裂片
+                # 1x (1) 法力浮龙
+                # 2x (1) 火羽精灵
+                # 2x (2) 寒冰箭
+                # 1x (2) 010101
+                # 1x (2) 活体风暴
+                # 2x (3) 冰冷鬼魂
+                # 1x (3) 冰霜新星
+                # 2x (3) 奥术智慧
+                # 1x (4) 冰锥术
+                # 2x (4) 变形术
+                # 2x (4) 水元素
+                # 2x (4) 蒸汽涌动者
+                # 2x (5) 凛风巫师
+                # 2x (5) 卡利莫斯的仆从
+                # 1x (6) 暴风雪
+                # 1x (7) 火焰之地传送门
+                # 2x (7) 火焰使者
+                # 1x (7) 烈焰风暴
+                #
+                AAECAf0ECJUDrgPJA8sE7AejtgLHxwLczQILTYsDqwSWBZzAApfBAsLBAuvCAsLDAsjHAtTOAgA=
+                #
+                # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
+        ';
+        $this->deck2_diffname= '
+                ### diffname
+                # 职业：法师
+                # 模式：标准模式
+                # 猛犸年
+                #
+                # 2x (1) 冰川裂片
+                # 1x (1) 法力浮龙
+                # 2x (1) 火羽精灵
+                # 2x (2) 寒冰箭
+                # 1x (2) 010101
+                # 1x (2) 活体风暴
+                # 2x (3) 冰冷鬼魂
+                # 1x (3) 冰霜新星
+                # 2x (3) 奥术智慧
+                # 1x (4) 冰锥术
+                # 2x (4) 变形术
+                # 2x (4) 水元素
+                # 2x (4) 蒸汽涌动者
+                # 2x (5) 凛风巫师
+                # 2x (5) 卡利莫斯的仆从
+                # 1x (6) 暴风雪
+                # 1x (7) 火焰之地传送门
+                # 2x (7) 火焰使者
+                # 1x (7) 烈焰风暴
+                #
+                AAECAf0ECJUDrgPJA8sE7AejtgLHxwLczQILTYsDqwSWBZzAApfBAsLBAuvCAsLDAsjHAtTOAgA=
+                #
+                # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
+        ';
+        $this->deck2_samecard_cnt_diff = '
+                ### 冰火融合
+                # 职业：法师
+                # 模式：标准模式
+                # 猛犸年
+                #
+                # 2x (1) 冰川裂片
+                # 1x (1) 法力浮龙
+                # 1x (1) aabb
+                # 1x (1) 火羽精灵
+                # 2x (2) 寒冰箭
+                # 1x (2) 寒冰行者
+                # 1x (2) 活体风暴
+                # 2x (3) 冰冷鬼魂
+                # 1x (3) 冰霜新星
+                # 2x (3) 奥术智慧
+                # 1x (4) 冰锥术
+                # 2x (4) 变形术
+                # 2x (4) 水元素
+                # 2x (4) 蒸汽涌动者
+                # 2x (5) 凛风巫师
+                # 2x (5) 卡利莫斯的仆从
+                # 1x (6) 暴风雪
+                # 1x (7) 火焰之地传送门
+                # 2x (7) 火焰使者
+                # 1x (7) 烈焰风暴
+                #
+                AAECAf0ECJUDrgPJA8sE7AejtgLHxwLczQILTYsDqwSWBZzAApfBAsLBAuvCAsLDAsjHAtTOAgA=
+                #
+                # 想要使用这副套牌，请先复制到剪贴板，然后在游戏中点击“新套牌”进行粘贴。
         ';
     }
 
@@ -627,6 +721,71 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         echo $hs->showDeck('A');
 
     }
+    public function test_update_diffname()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+        $hs->tstSetDbh($db);
+
+        $query = array(
+            );
+        $db->tstSetQueryKeys($query);
+        $deck = $hs->updDeck('A',$this->deck2);
+        assert('$deck == false','the real $deck is:'.print_r($deck));
+
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => $this->jsondeck2
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+        $deck = $hs->updDeck('A',$this->deck2_diffname);
+        assert('$deck == false','the real $deck is:'.print_r($deck));
+    }
+    public function test_upd_newcard()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+        $hs->tstSetDbh($db);
+
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => $this->jsondeck2
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+        $deck = $hs->updDeck('A',$this->deck2_newcard);
+        $dbSetRes = $db->tstGetSetData();
+        $deck = json_decode($dbSetRes[0],true);
+        $cards = $deck['cardgrps'];
+        assert('$cards[4]["name"] == \'010101\'','the real name is:'.$cards[4]["name"]);
+        return;
+    }
+    public function test_upd_samecard()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+        $hs->tstSetDbh($db);
+
+        $deck = json_decode($this->jsondeck2,true);
+        $deck['cardgrps'][2]['appear'] = 1;
+        $deck['cardgrps'][2]['appearsum'] = 2;
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => json_encode($deck)
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+        $deck = $hs->updDeck('A',$this->deck2_samecard_cnt_diff);
+        $dbSetRes = $db->tstGetSetData();
+        $deck = json_decode($dbSetRes[0],true);
+        $cards = $deck['cardgrps'];
+        assert('$cards[2]["name"] == \'aabb\'','the real name is:'.$cards[2]["name"]);
+        assert('$cards[3]["appear"] == 1','the real appear is:'.$cards[3]["appear"]);
+        assert('$cards[3]["appearsum"] == 2','the real appearsum is:'.$cards[3]["appearsum"]);
+
+        return;
+    }
     public function run_all_test()
     {
         //$this->test_parse_str();
@@ -637,6 +796,9 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         $this->test_get_userdeck_withfavor();
         $this->test_set_favor_result();
         $this->test_draw_cards();
+        $this->test_update_diffname();
+        $this->test_upd_newcard();
+        $this->test_upd_samecard();
     }
 }
 

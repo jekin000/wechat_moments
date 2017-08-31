@@ -153,6 +153,8 @@ class wechatCallbackapiTest
                 else
                     return $heartstone->showDeck($username);
             }
+            else if ($cmdnostr == '007' && count($cmdarr)>1)
+                return $heartstone->showUpdDeck($username,$cmdarr[1]);
             else if ($cmdnostr == '799')
                 return $heartstone->dbgShowallkeys($username);
             else if ($cmdnostr == '800' && count($cmdarr)>1)

@@ -24,13 +24,14 @@ class HeartStone
 
     public function showMenu()
     {
-       return "Welcome to your heartstone V0.5:\n"
+       return "Welcome to your heartstone V0.6:\n"
            ."[001] create your deck;\n"
            ."[002] list your decks by favor;\n"
-           ."[003] set your favorite decks;\n"
-           ."[004] set result to your favor deck;\n"
-           ."[005] list your decks by win-rate;\n"
+           ."[003] set favorite;\n"
+           ."[004] set match result;\n"
+           ."[005] list decks by win-rate;\n"
            ."[006] draw cards;\n"
+           ."[007] update deck;\n"
            ;
     }
     
@@ -59,8 +60,7 @@ class HeartStone
         else if ($deck == 'save fail') 
             return "Fail to store data.\n";
         
-        return "create deck success!\n";
-        
+        return $this->formatDeck($deck);
     }
 
     public function showSetFavorResult($userid,$isvic)
@@ -71,9 +71,21 @@ class HeartStone
        
         return $this->fmtDeckWinRate($deck); 
     }
+    public function showUpdDeck($userid,$deckstr)
+    {
+        $deck = $this->updDeck($userid,$deckstr);
+        if (!$deck)
+            return 'Could not update your deck.';
 
+        return $this->formatDeck($deck,false,true);
+    }
     public function createDeck($userid,$deckstr) 
     {
+        /*
+            TODO:
+                1. name must be unique;
+                2. max cnt is controlled;
+        */
         $deck = $this->parseDeck($deckstr);
         if ($deck == false)
             return 'deck invalid';
@@ -314,7 +326,49 @@ class HeartStone
 
         return $deck;
     }
+    public function updDeck($userid,$deckstr) 
+    {
+        $deck = $this->parseDeck($deckstr);
+        if (!$deck)
+            return false;
+         
+        $ret = $this->dbh->getallkeys($userid);
+        if (count($ret) == 0)
+            return false;
 
+        $olddeck = false;
+        while ($val = current($ret))
+        {
+            $tmpdeck = json_decode($val,true);
+            if ($deck['name'] == $tmpdeck['name']){
+                $olddeck = $tmpdeck;
+                break;
+            }
+            next($ret);
+        }
+        
+        if (!$olddeck)
+            return false;
+        
+        $oldcards = $olddeck['cardgrps'];
+        $deckcnt = count($deck['cardgrps']);
+        $oldcnt  = count($oldcards);
+        for ($i=0; $i<$deckcnt ;$i++){
+            $cardname = $deck['cardgrps'][$i]['name']; 
+            for ($j=0; $j<$oldcnt ;$j++){
+                if ($cardname == $oldcards[$j]['name']){
+                    $deck['cardgrps'][$i]['appear']   = $oldcards[$j]['appear'];
+                    $deck['cardgrps'][$i]['appearsum']= $oldcards[$j]['appearsum']; 
+                }
+            }
+        }
+
+        $deck['matchcnt'] = $olddeck['matchcnt'];
+        $ret = $this->saveDeck($userid,$deck);
+        if (!$ret)
+            return false;
+        return $deck;
+    }
     private function getFavorDeck($userid)
     {
         $ret = $this->dbh->getallkeys($userid);
@@ -421,6 +475,7 @@ class HeartStone
                 )
 
         */
+
         $arr = $this->parseMultiDelimer(array(' ','x','(',')',"\n"),$cardstr);
         return array(
                         'id'        => $idx
