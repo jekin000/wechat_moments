@@ -598,10 +598,40 @@ AAECAaoICIEE3boC9r0Cx8ECpcICh8QCtM0CwNACC70BgAT1BP4Fl8ECts0C+80C/s0Cis4CuM4CweIC
         return;
     }
 
+    public function test_showDeck_006()
+    {
+        $db = new  DataStore();
+        $hs = new  HeartStone();
+        $hs->tstSetDbh($db);
+
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => $this->jsondeck2
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+
+
+        $hs->setFavorDeck('A','1');
+        $dbSetRes = $db->tstGetSetData();
+        $deck = json_decode($dbSetRes[0],true);
+        $deck['matchcnt']['viccnt'] = 1;
+        $deck['matchcnt']['defcnt'] = 1;
+        $query = array(
+                'A#@#XYZ' => $this->jsondeck1
+                ,'A#@#LMN' => json_encode($deck)
+                ,'A#@#ABC' => $this->jsondeck3
+            );
+        $db->tstSetQueryKeys($query);
+        
+        echo $hs->showDeck('A');
+
+    }
     public function run_all_test()
     {
         //$this->test_parse_str();
         //$this->showDeck();
+        //$this->test_showDeck_006();
         $this->test_set_get_DB_queryret();
         $this->test_get_userdeck();
         $this->test_get_userdeck_withfavor();

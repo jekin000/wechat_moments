@@ -34,6 +34,14 @@ class HeartStone
            ;
     }
     
+    public function showDeck($userid)
+    {
+        $deck = $this->getFavorDeck($userid);
+        if (!$deck)
+            return 'Can not get Deck.';
+
+        return $this->formatDeck($deck,false,true);
+    }
     public function showDrawCards($userid,$drawids)
     {
         $deck = $this->drawCards($userid,$drawids);
@@ -433,13 +441,20 @@ class HeartStone
         return explode($delimers[0],$ready);
     }
     
-    private function formatDeck($deck,$isPrtProb=false)
+    private function formatDeck($deck,$isPrtProb=false,$isPrtVic=false)
     {
         $fmt = '';
         $allcnt = 0;
         $cardgrps = $deck['cardgrps'];
         $cardslen = count($cardgrps);
         
+        $viccnt = '';
+        if ($isPrtVic){
+            $viccnt = '胜率：'.$this->fmtDeckWinRate($deck)
+                .' from'
+                .' '.($deck['matchcnt']['viccnt']+$deck['matchcnt']['defcnt']).' matches'
+                ."\n";
+        }
         for ($i=0; $i<$cardslen; $i++)
         {
             if ($cardgrps[$i]['count'] > 0)
@@ -462,7 +477,7 @@ class HeartStone
             }
         }
 
-        return '['.$deck['name'].']'." $allcnt"."x\n".$fmt;
+        return '['.$deck['name'].']'." $allcnt"."x\n".$viccnt.$fmt;
     }
     private function isValidIdRange($idarr,$cnt)
     {
